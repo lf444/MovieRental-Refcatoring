@@ -1,6 +1,6 @@
-package Version3point5;
+package Version2;
 public class Location {
-	Film unFilm;
+	private Film unFilm;
 	private int nbJours;
 	
 	public Location(Film unFilm, int nbJours) {

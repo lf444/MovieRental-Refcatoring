@@ -1,4 +1,4 @@
-package Version3point5;
+package Version2;
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -137,29 +137,29 @@ public class TestLocationHTML {
 				+ "Total de 10.5\n"
 				+ "Vous gagnez 6 points de fidélité\n<p/></html>";
 		
-		Client unClient = new Client("Thomas",1);
+		Client unClient = new Client("Thomas");
 	    testSituationCumul(unClient,"Taxi Driver",Film.NORMAL,2);
-	    testSituationCumul(unClient,"11 heures 14",Film.NOUVEAUTE,1);		
+		testSituationCumul(unClient,"11 heures 14",Film.NOUVEAUTE,1);		
 		testSituationCumul(unClient,"Cendrillon",Film.ENFANT,2);	
 		testSituationCumul(unClient,"FFXIV",Film.COFFRETSERIESTV,4);	
 		testSituationCumul(unClient,"la green ligne",Film.CINEPHILE,1);	
 		
-		String test = unClient.getSituation().situa(unClient);
+		String test = unClient.situationHTML();
 		
 		assertEquals(attendu,test);
-}
+	}
 	
 	
 
 	public String testSituation(String nomClient, String nomFilm, int typeFilm, int nbJours ) {
-		Client unClient = new Client(nomClient, 1);
+		Client unClient = new Client(nomClient);
 		Film unFilm = new Film(nomFilm, typeFilm);
 		Location uneLocation = new Location(unFilm, nbJours);
 		unClient.addLocation(uneLocation);
-		return unClient.getSituation().situa(unClient);
+		return unClient.situationHTML();
 	}
 	
-		
+	
 	public void testSituationCumul(Client unClient, String nomFilm, int typeFilm, int nbJours) {
 		Film unFilm = new Film(nomFilm, typeFilm);
 		Location uneLocation = new Location(unFilm, nbJours);
