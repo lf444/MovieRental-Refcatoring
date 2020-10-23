@@ -1,10 +1,10 @@
 package version3;
 public class Location {
-	Film unFilm;
+	private Film unFilm;
 	private int nbJours;
 	
 	public Location(Film unFilm, int nbJours) {
-		this.unFilm = unFilm;
+		this.setUnFilm(unFilm);
 		this.nbJours = nbJours;
 	}
 
@@ -13,7 +13,15 @@ public class Location {
 	}
 
 	public Film getFilm() {
-		return this.unFilm;
+		return this.getUnFilm();
+	}
+
+	public Film getUnFilm() {
+		return unFilm;
+	}
+
+	public void setUnFilm(Film unFilm) {
+		this.unFilm = unFilm;
 	}
 
 

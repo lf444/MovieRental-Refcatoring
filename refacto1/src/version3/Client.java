@@ -19,28 +19,43 @@ public class Client {
 	}
 	
 	public String situation() {
-		double TotalDu = 0;
-		int TotaFidelite = 0;
+
 		Iterator<Location> forEach = locations.iterator();
 		String result = "Situation du client: " + getNom() + "\n";
 		
 		while (forEach.hasNext()) {
+			
 			Location each = (Location) forEach.next();
 			
-			// ajout point de fideliter
-			TotaFidelite += each.unFilm.getPointFidelites(each);	
 			// mise en forme location
-			result += "\t" + each.getFilm().getTitre() + "\t" + String.valueOf(each.unFilm.getMontant(each)) + "\n";
-			TotalDu += each.unFilm.getMontant(each);		
+			result += "\t" + each.getFilm().getTitre() + "\t" + String.valueOf(each.getFilm().getPrix()) + "\n";
+			
 		}
 		
 		// ajout récapitulatif client
-		result += "Total de " + String.valueOf(TotalDu) + "\n";
-		result += "Vous gagnez " + String.valueOf(TotaFidelite) + " points de fidélité\n";
+		result += "Total de " + String.valueOf(getMontantTotal()) + "\n";
+		result += "Vous gagnez " + String.valueOf(getPointFidelitesTotal()) + " points de fidélité\n";
 		
 		return result;
 	}
 	
+	
+	private double getMontantTotal() {
+		double montant=0;
+		for(Location each: locations) {
+			montant+= each.getUnFilm().getPrix().getMontant(each);		
+		}
+		
+		return montant;
+	}
+	
+	public int getPointFidelitesTotal() {
+		int point =0;
+		for(Location each: locations) {
+			point+=  each.getUnFilm().getPoint().getPointFidelites(each);
+		}
+		return point;
+	}
 	
 
 

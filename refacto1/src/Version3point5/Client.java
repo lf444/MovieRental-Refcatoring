@@ -7,8 +7,13 @@ public class Client {
 	private String nom;
 	private Vector<Location> locations = new Vector<Location>();
 	
-	public Client(String nom) {
+
+
+	private Situation situation;
+	
+	public Client(String nom,int e) {
 		this.nom = nom;
+		this.setSituation(e);
 	}
 	
 	public void addLocation(Location location) {
@@ -19,53 +24,28 @@ public class Client {
 		return this.nom;
 	}
 	
-	public String situation() {
-		double totalDu = 0;
-		int pointsFidelites = 0;
-		Iterator<Location> forEach = locations.iterator();
-		String result = "Situation du client: " + getNom() + "\n";
-		
-		while (forEach.hasNext()) {			
-			Location each = (Location) forEach.next();							
-			pointsFidelites = each.getPointFidelites();
-			
-			// mise en forme location
-			result += "\t" + each.getFilm().getTitre() + "\t" + String.valueOf(each.getMontant()) + "\n";
-			totalDu = each.getMontant();			
-		}
-		
-		// ajout récapitulatif client
-		result += "Total de " + String.valueOf(totalDu) + "\n";
-		result += "Vous gagnez " + String.valueOf(pointsFidelites) + " points de fidélité\n";
-		
-		return result;
+
+
+	
+	
+	public Situation getSituation() {
+		return situation;
 	}
 
-	public String situationHTML() {
-		double totalDu = 0;
-		int pointsFidelites = 0;
-		Iterator<Location> forEach = locations.iterator();
-		String result = "<html><p>Situation du client: " + getNom() + "\n";
-		
-		while (forEach.hasNext()) {
-			double du = 0;
-			Location each = (Location) forEach.next();
-			
-			du = each.getMontant();
-			
-			
-			pointsFidelites = each.getPointFidelites();
-			
-			// mise en forme location
-			result += "\t" + each.getFilm().getTitre() + "\t" + String.valueOf(du) + "\n";
-			totalDu += du;
+	public void setSituation(int e) {
+		switch(e) {
+		case 0:
+			this.situation= new SituationTEXT();
+			break;
+		case 1:
+			this.situation= new SituationHTML();
+			break;
 		}
 		
-		// ajout récapitulatif client
-		result += "Total de " + String.valueOf(totalDu) + "\n";
-		result += "Vous gagnez " + String.valueOf(pointsFidelites) + " points de fidélité\n<p/></html>";
-		
-		return result;
+	}
+	
+	public Vector<Location> getLocations() {
+		return locations;
 	}
 
 }
