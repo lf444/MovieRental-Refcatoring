@@ -21,15 +21,11 @@ public class Client {
 	public String situation() {
 
 		Iterator<Location> forEach = locations.iterator();
-		String result = "Situation du client: " + getNom() + "\n";
-		
+		String result = "Situation du client: " + getNom() + "\n";		
 		while (forEach.hasNext()) {
-			
-			Location each = (Location) forEach.next();
-			
+			Location each = (Location) forEach.next();	
 			// mise en forme location
-			result += "\t" + each.getFilm().getTitre() + "\t" + String.valueOf(each.getFilm().getPrix()) + "\n";
-			
+			result += "\t" + each.getFilm().getTitre() + "\t" + String.valueOf(each.getFilm().getPrix(each.getNbJours())) + "\n";
 		}
 		
 		// ajout récapitulatif client
@@ -43,7 +39,7 @@ public class Client {
 	private double getMontantTotal() {
 		double montant=0;
 		for(Location each: locations) {
-			montant+= each.getUnFilm().getPrix().getMontant(each);		
+			montant+= each.getUnFilm().getPrix(each.getNbJours())	;
 		}
 		
 		return montant;
@@ -52,7 +48,7 @@ public class Client {
 	public int getPointFidelitesTotal() {
 		int point =0;
 		for(Location each: locations) {
-			point+=  each.getUnFilm().getPoint().getPointFidelites(each);
+			point+=  each.getUnFilm().getPoint(each.getNbJours());
 		}
 		return point;
 	}

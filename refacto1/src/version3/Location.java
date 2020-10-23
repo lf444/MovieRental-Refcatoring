@@ -24,5 +24,10 @@ public class Location {
 		this.unFilm = unFilm;
 	}
 
-
+	public double getMontant() {
+		return unFilm.getPrix(nbJours);
+	}
+	public int getFidelite() {
+		return unFilm.getPoint(nbJours);
+	}
 }

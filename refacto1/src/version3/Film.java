@@ -9,8 +9,6 @@ public class Film {
 	public static final int NORMAL = 0;
 
 	private Prix prix;
-	private PointFidelite point;
-	
 	private String titre;
 	private int codePrix;
 
@@ -29,17 +27,15 @@ public class Film {
 		switch(codePrix) {
 			case NORMAL:
 				this.prix = new PrixNormal();
-		
-				this.point= new PointFideliteAutre();
+			
+				
 					break;
 			case NOUVEAUTE:
 				this.prix = new PrixNouveau();
-				this.point= new PointFideliteNouveau() {
-				};
 					break;			
 			case ENFANT:
 				this.prix = new PrixEnfant();
-				this.point= new PointFideliteAutre();
+				
 				break;
 		}
 	}
@@ -50,12 +46,12 @@ public class Film {
 	
 
 
-	public Prix getPrix() {
-		return prix;
+	public double getPrix(int nbJours) {
+		return prix.getMontant(nbJours);
 	}
 
-	public PointFidelite getPoint() {
-		return this.point;
+	public int getPoint(int nbJours) {
+		return prix.getPointFidelites(nbJours);
 		
 	}
 

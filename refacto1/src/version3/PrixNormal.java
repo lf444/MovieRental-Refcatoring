@@ -2,10 +2,11 @@ package version3;
 
 public class PrixNormal extends Prix {
 	@Override
-	public double getMontant(Location location) {
+	public double getMontant(int nbJours) {
 		double montant=2;
-		if (location.getNbJours() > 2) 
-			montant += (location.getNbJours() - 2) * 1.5;
+		if (nbJours > 2) 
+			montant += (nbJours - 2) * 1.5;
 		return montant;
 	}
+
 }

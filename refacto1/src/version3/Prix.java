@@ -1,7 +1,10 @@
 package version3;
 
 public abstract class Prix {
-	public abstract double getMontant(Location location);
+	public abstract double getMontant(int nbJours);
+	public  int getPointFidelites(int nbJours) {
+		return 1;
+	}
 	
 }
 
