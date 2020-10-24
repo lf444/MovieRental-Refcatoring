@@ -1,15 +1,12 @@
 package version4;
 
-
-
 public class Film {
-
 
 	public static final int ENFANT = 2;
 	public static final int NOUVEAUTE = 1;
 	public static final int NORMAL = 0;
 	public static final int CINEPHILE = 3;
-	public static final int  COFFRETSERIESTV = 4;
+	public static final int COFFRETSERIESTV = 4;
 
 	private String titre;
 	private int codePrix;
@@ -26,13 +23,13 @@ public class Film {
 	}
 
 	public void setCodePrix(int codePrix) {
-		switch(codePrix) {
+		switch (codePrix) {
 		case NORMAL:
 			this.prix = new PrixNormal();
 			break;
 		case NOUVEAUTE:
 			this.prix = new PrixNouveau();
-			break;			
+			break;
 		case ENFANT:
 			this.prix = new PrixEnfant();
 			break;
@@ -44,27 +41,8 @@ public class Film {
 		}
 	}
 
-
 	public int getCodePrix() {
 		return this.codePrix;
-	}
-
-
-
-	int getPointFidelites(Location location) {
-		int pointsFidelites = 0;
-		// ajout des points de fidélité
-		if ((location.getFilm().getCodePrix() != Film.COFFRETSERIESTV) && (location.getFilm().getCodePrix() != Film.CINEPHILE))
-			pointsFidelites++;
-
-		// ajout d'un bonus pour les nouveautés louées depuis au moins deux jours
-		if ((location.getFilm().getCodePrix() == Film.NOUVEAUTE) && location.getNbJours() > 1)
-			pointsFidelites++;
-
-		// ajout d'un bonus pour les CINEPHILE louées moins de 2 jours
-		if ((location.getFilm().getCodePrix() == Film.CINEPHILE) && location.getNbJours() < 2)
-			pointsFidelites += 3;
-		return pointsFidelites;
 	}
 
 	public double getMontant(int nbJours) {

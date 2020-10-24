@@ -2,13 +2,10 @@ package version4;
 
 import java.util.Vector;
 
-
-
 public class Client {
 	private String nom;
 	private Vector<Location> locations = new Vector<Location>();
-	private SituationTEXT situationTEXT;
-	private SituationHTML situationHTML;
+	private Situation situation;
 
 	public Vector<Location> getLocations() {
 		return locations;
@@ -27,13 +24,13 @@ public class Client {
 	}
 
 	public String situation() {
-		this.situationTEXT = new SituationTEXT();
-		return this.situationTEXT.valeur(this);
+		this.situation = new SituationTEXT();
+		return this.situation.valeur(this);
 	}
 
 	public String situationHTML() {
-		this.situationHTML = new SituationHTML();
-		return this.situationHTML.valeur(this);
+		this.situation = new SituationHTML();
+		return this.situation.valeur(this);
 
 	}
 

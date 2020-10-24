@@ -9,9 +9,9 @@ public abstract class Situation {
 		String result = headerString(client);
 
 		while (forEach.hasNext()) {
-			
+
 			Location each = (Location) forEach.next();
-			
+
 			// mise en forme location
 			result += eachRentalString(each);
 		}
